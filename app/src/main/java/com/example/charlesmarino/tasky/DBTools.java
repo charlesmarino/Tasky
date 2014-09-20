@@ -39,6 +39,16 @@ public class DBTools extends SQLiteOpenHelper{
         db.close();
     }
 
+
+    public void editTask(Task task)  {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("taskName", task.name);
+        values.put("taskDescription", task.description);
+        db.update("tasks",values, "taskID"+ " = ?", new String[] {task.ID});
+        db.close();
+    }
+
     public void deleteTask(String id) {
         SQLiteDatabase db = this.getWritableDatabase();
         String deleteQuery = "DELETE FROM tasks where taskID='" + id + "'";
@@ -65,7 +75,7 @@ public class DBTools extends SQLiteOpenHelper{
     public Task getTaskInfo(String id) {
         SQLiteDatabase db = this.getReadableDatabase();
 
-        String selectQuery = "SELECT * FROM tasks where TASKID='"+id+"'";
+        String selectQuery = "SELECT * FROM tasks where TaskID="+id;
 
         Cursor cursor = db.rawQuery(selectQuery, null);
         Task task = null;

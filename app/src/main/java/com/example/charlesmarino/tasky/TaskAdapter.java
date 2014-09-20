@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -14,12 +13,10 @@ import java.util.ArrayList;
  * Created by charlesmarino on 9/10/14.
  */
 public class TaskAdapter extends ArrayAdapter<Task>{
-    private ArrayList<Task> values;
     public DBTools dbTools;
 
     public TaskAdapter(Context context, ArrayList<Task> values, DBTools dbTools) {
         super(context, R.layout.row_layout, values);
-        this.values = values;
         this.dbTools = dbTools;
     }
 
@@ -48,19 +45,6 @@ public class TaskAdapter extends ArrayAdapter<Task>{
         //populate data
         viewHolder.name.setText(task.name);
         viewHolder.description.setText(task.description);
-        //Add listener for btn
-        Button deleteButton = (Button) convertView.findViewById(R.id.arrowRight);
-        deleteButton.setTag(task.ID);
-        deleteButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String tag = (String) v.getTag();
-                dbTools.deleteTask(tag);
-                remove(getItem(position));
-                notifyDataSetChanged();
-
-            }
-        });
         //return completed view
         return convertView;
     }

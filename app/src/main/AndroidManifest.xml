@@ -20,6 +20,10 @@
             android:label="Create Task">
 
         </activity>
+        <activity android:name=".EditTask"
+            android:label="Edit Task">
+
+        </activity>
     </application>
 
 </manifest>

@@ -4,12 +4,13 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by charlesmarino on 9/10/14.
  */
-public class Task {
+public class Task implements Serializable{
 
     String name, description, ID;
 
