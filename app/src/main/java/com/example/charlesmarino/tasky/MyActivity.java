@@ -33,7 +33,6 @@ public class MyActivity extends Activity {
         //Create the adapter and get the ListView
         adapter = new TaskAdapter(this, arrayOfTasks, dbtools);
         ListView theListView = (ListView) findViewById(R.id.theListView);
-
         //set Adapter to ListView
         theListView.setAdapter(adapter);
         theListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
@@ -56,8 +55,8 @@ public class MyActivity extends Activity {
     private void openAlert(final View view, int position) {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MyActivity.this);
         final Task taskSelected = arrayOfTasks.get(position);
-        alertDialogBuilder.setTitle(taskSelected.name);
-        alertDialogBuilder.setMessage("Are you sure?");
+        alertDialogBuilder.setTitle(taskSelected.getName());
+        alertDialogBuilder.setMessage("What are we doing with this task?");
         alertDialogBuilder.setPositiveButton("Complete", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -67,7 +66,7 @@ public class MyActivity extends Activity {
         alertDialogBuilder.setNegativeButton("Delete", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                dbtools.deleteTask(taskSelected.ID);
+                dbtools.deleteTask(taskSelected.getID());
                 adapter.clear();
                 adapter.addAll(dbtools.getAllTasks());
                 adapter.notifyDataSetChanged();
@@ -115,7 +114,7 @@ public class MyActivity extends Activity {
             adapter.addAll(dbtools.getAllTasks());
             adapter.notifyDataSetChanged();
         } else if(resultCode == Activity.RESULT_OK && requestCode ==2) {
-            Task task =new Task(data.getStringExtra("id"),data.getStringExtra("name"), data.getStringExtra("description"));
+            Task task = new Task(data.getStringExtra("id"),data.getStringExtra("name"), data.getStringExtra("description"));
             dbtools.editTask(task);
             adapter.clear();
             adapter.addAll(dbtools.getAllTasks());

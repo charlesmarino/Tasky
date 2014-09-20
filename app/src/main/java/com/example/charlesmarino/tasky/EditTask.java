@@ -19,9 +19,9 @@ public class EditTask extends Activity{
         Task taskSelected = (Task) activityThatCalled.getSerializableExtra("taskSelected");
         EditText name = (EditText) findViewById(R.id.task_name_edit_text);
         EditText description = (EditText) findViewById(R.id.task_description_edit_text);
-        name.setText(taskSelected.name);
-        description.setText(taskSelected.description);
-        ID = taskSelected.ID;
+        name.setText(taskSelected.getName());
+        description.setText(taskSelected.getName());
+        ID = taskSelected.getID();
 
     }
 

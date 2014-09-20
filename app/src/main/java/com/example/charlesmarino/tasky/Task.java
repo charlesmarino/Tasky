@@ -12,7 +12,10 @@ import java.util.ArrayList;
  */
 public class Task implements Serializable{
 
-    String name, description, ID;
+    private String name;
+    private String description;
+    private String ID;
+
 
     public Task(JSONObject object) {
 
@@ -30,7 +33,6 @@ public class Task implements Serializable{
             this.ID = ID;
     }
 
-
     public static ArrayList<Task> fromJSON(JSONArray jsonObjects) {
         ArrayList<Task> tasks = new ArrayList<Task>();
         for (int i = 0; i < jsonObjects.length(); i++) {
@@ -41,5 +43,29 @@ public class Task implements Serializable{
             }
         }
         return tasks;
+    }
+
+    public String getID() {
+        return ID;
+    }
+
+    public void setID(String ID) {
+        this.ID = ID;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

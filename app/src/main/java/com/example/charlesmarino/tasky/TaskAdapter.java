@@ -43,8 +43,8 @@ public class TaskAdapter extends ArrayAdapter<Task>{
         // }
 
         //populate data
-        viewHolder.name.setText(task.name);
-        viewHolder.description.setText(task.description);
+        viewHolder.name.setText(task.getName());
+        viewHolder.description.setText(task.getDescription());
         //return completed view
         return convertView;
     }

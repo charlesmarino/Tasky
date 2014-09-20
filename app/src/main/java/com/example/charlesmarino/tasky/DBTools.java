@@ -33,8 +33,8 @@ public class DBTools extends SQLiteOpenHelper{
     public void insertTask(Task task)  {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put("taskName", task.name);
-        values.put("taskDescription", task.description);
+        values.put("taskName", task.getName());
+        values.put("taskDescription", task.getDescription());
         db.insert("tasks", null, values);
         db.close();
     }
@@ -43,9 +43,9 @@ public class DBTools extends SQLiteOpenHelper{
     public void editTask(Task task)  {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put("taskName", task.name);
-        values.put("taskDescription", task.description);
-        db.update("tasks",values, "taskID"+ " = ?", new String[] {task.ID});
+        values.put("taskName", task.getName());
+        values.put("taskDescription", task.getDescription());
+        db.update("tasks",values, "taskID"+ " = ?", new String[] {task.getID()});
         db.close();
     }
 
